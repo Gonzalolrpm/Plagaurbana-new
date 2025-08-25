@@ -1,0 +1,192 @@
+// js/script.js
+
+// Usamos el modo estricto de JavaScript para un código más limpio y seguro.
+"use strict";
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    // --- MANEJO DEL FORMULARIO DE CONTACTO CON reCAPTCHA v3 ---
+    const contactForm = document.getElementById("contact-form");
+    const formMessage = document.getElementById("form-message");
+
+    if (contactForm) {
+        contactForm.addEventListener("submit", function(e) {
+            e.preventDefault(); // Prevenimos que el formulario se envíe de la forma tradicional.
+
+            // IMPORTANTE: Reemplaza con tu "Site Key" de reCAPTCHA v3.
+            const recaptchaSiteKey = 'TU_RECAPTCHA_SITE_KEY'; 
+            
+            formMessage.textContent = 'Enviando...';
+            formMessage.style.color = '#333';
+
+            grecaptcha.ready(function() {
+                grecaptcha.execute(recaptchaSiteKey, {action: 'submit'}).then(function(token) {
+                    
+                    const recaptchaInput = document.getElementById('g-recaptcha-response');
+                    if (recaptchaInput) {
+                        recaptchaInput.value = token;
+                    }
+
+                    const formData = new FormData(contactForm);
+
+                    fetch('contact.php', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            formMessage.textContent = '¡Gracias! Tu mensaje ha sido enviado.';
+                            formMessage.style.color = 'green';
+                            contactForm.reset();
+                        } else {
+                            formMessage.textContent = 'Error: ' + (data.message || 'No se pudo enviar.');
+                            formMessage.style.color = 'red';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        formMessage.textContent = 'Hubo un error de conexión. Inténtalo de nuevo.';
+                        formMessage.style.color = 'red';
+                    });
+                });
+            });
+        });
+    }
+
+
+    // --- CIERRE AUTOMÁTICO DEL MENÚ MÓVIL (Bootstrap 4/5) ---
+    document.addEventListener('click', function (event) {
+        const isClickInsideNavbar = event.target.closest('.navbar');
+        const isNavbarToggler = event.target.closest('.navbar-toggler');
+        const navbarCollapse = document.querySelector('.navbar-collapse');
+
+        if (navbarCollapse && navbarCollapse.classList.contains('show') && !isClickInsideNavbar && !isNavbarToggler) {
+            const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+                toggle: false
+            });
+            bsCollapse.hide();
+        }
+    });
+
+
+    // --- SMOOTH SCROLL PARA ENLACES INTERNOS (anclas) ---
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    
+    // --- ANIMACIÓN DE HORMIGAS CAMINANDO (VERSIÓN VERTICAL) ---
+    function initAntAnimation() {
+        // No ejecutar en pantallas pequeñas para no molestar
+        if (window.innerWidth < 768) {
+            return;
+        }
+
+        const ANT_COUNT = 5; // Número de hormigas iniciales
+
+        function createAnt() {
+            const ant = document.createElement('div');
+            ant.classList.add('ant');
+            document.body.appendChild(ant);
+
+            const startX = Math.random() * window.innerWidth;
+            const startY = window.innerHeight + 100;
+            const endY = -100;
+            const angle = -90; // Siempre apuntan hacia arriba
+            const duration = Math.random() * 8 + 12; // Duración del viaje
+            const delay = Math.random() * 5; // Retraso antes de empezar
+
+            ant.style.left = `${startX}px`;
+            ant.style.top = `${startY}px`;
+            ant.style.transform = `rotate(${angle}deg)`;
+            ant.style.transition = `top ${duration}s linear`;
+            ant.style.transitionDelay = `${delay}s`;
+            
+            ant.getBoundingClientRect(); 
+
+            ant.style.top = `${endY}px`;
+            
+            // Eliminar la hormiga del DOM cuando termina su animación
+            setTimeout(() => {
+                ant.remove();
+            }, (duration + delay + 1) * 1000);
+        }
+
+        // Crear el lote inicial de hormigas
+        for (let i = 0; i < ANT_COUNT; i++) {
+            setTimeout(createAnt, i * 3000);
+        }
+        
+        // Crear una nueva hormiga cada cierto tiempo para mantener el efecto
+        setInterval(createAnt, 6000);
+    }
+
+    // --- Iniciar la animación de hormigas ---
+    initAntAnimation();
+
+
+    // ==================================
+    // LÓGICA PARA EL WIDGET DE WHATSAPP AVANZADO
+    // ==================================
+    const whatsappWidget = document.getElementById('whatsapp-widget');
+    const whatsappButton = document.getElementById('whatsapp-button');
+    const whatsappModal = document.getElementById('whatsapp-modal');
+    const closeModalButton = document.getElementById('close-modal-button');
+    const openWhatsappButton = document.getElementById('open-whatsapp-button');
+    const whatsappModalBackdrop = document.querySelector('.whatsapp-modal-backdrop');
+
+    // 1. Hacer visible el botón después de 3 segundos
+    setTimeout(() => {
+        if (whatsappWidget) {
+            whatsappWidget.classList.add('visible');
+        }
+    }, 3000);
+
+    // 2. Abrir el modal
+    if (whatsappButton) {
+        whatsappButton.addEventListener('click', () => {
+            if (whatsappModal) {
+                whatsappModal.classList.add('open');
+            }
+        });
+    }
+
+    // 3. Función para cerrar el modal
+    const closeModal = () => {
+        if (whatsappModal) {
+            whatsappModal.classList.remove('open');
+        }
+    };
+
+    // 4. Asignar eventos de cierre
+    if (closeModalButton) {
+        closeModalButton.addEventListener('click', closeModal);
+    }
+    if (whatsappModalBackdrop) {
+        whatsappModalBackdrop.addEventListener('click', closeModal);
+    }
+
+    // 5. Lógica para abrir la ventana de WhatsApp
+    if (openWhatsappButton) {
+        openWhatsappButton.addEventListener('click', () => {
+            // Personaliza estos valores
+            const whatsappNumber = "5491163086386";
+            const whatsappMessage = "¡Hola! Estoy interesado en un servicio de control de plagas. ¿Podrían darme más información?";
+            
+            const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+            window.open(url, '_blank');
+        });
+    }
+    
+});
