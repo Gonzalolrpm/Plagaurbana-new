@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // --- Iniciar la animación de hormigas ---
-    initAntAnimation();
+    initAntAnimation(); 
 
 
     // ==================================
@@ -213,4 +213,75 @@ document.addEventListener("DOMContentLoaded", function() {
 
   function handle(mq){ mq.matches ? bindHover() : unbindHover(); }
   handle(mq); mq.addListener(handle);
+})();
+
+//Apertura de modal + anterior y siguiente
+(function(){
+  var $modal   = $('#serviceModal');
+  var cards    = [].slice.call(document.querySelectorAll('.service-card'));
+  var $title   = document.getElementById('serviceTitle');
+  var $text    = document.getElementById('serviceText');
+  var $img     = document.getElementById('serviceImg');
+  var $slide   = document.querySelector('.service-modal-slide');
+  var current  = 0;
+  var DURATION = 350; // ms – debe coincidir con .35s del CSS
+
+  function fillFromCard(i){
+    var c = cards[i];
+    $title.textContent = c.dataset.title || '';
+    $text.textContent  = c.dataset.text  || '';
+    $img.src           = c.dataset.img   || '';
+    $img.alt           = c.dataset.title || '';
+  }
+
+  function animateSwap(dir){ // dir: 'next' | 'prev'
+    // etapa 1: salir
+    $slide.classList.remove('slide-in-from-left','slide-in-from-right','slide-in-active');
+    $slide.classList.add(dir === 'next' ? 'slide-out-left' : 'slide-out-right');
+    setTimeout(function(){
+      // actualizar contenido
+      fillFromCard(current);
+      // etapa 2: entrar
+      $slide.classList.remove('slide-out-left','slide-out-right');
+      $slide.classList.add(dir === 'next' ? 'slide-in-from-right' : 'slide-in-from-left');
+      // forzar reflow para arrancar transición
+      void $slide.offsetWidth;
+      $slide.classList.add('slide-in-active');
+    }, DURATION);
+  }
+
+  function show(i){
+    if (i < 0) i = cards.length - 1;
+    if (i >= cards.length) i = 0;
+    current = i;
+    fillFromCard(current);
+    $slide.classList.remove('slide-out-left','slide-out-right','slide-in-from-left','slide-in-from-right');
+    $slide.classList.add('slide-in-active');
+    $modal.modal({ backdrop: true, keyboard: true }).modal('show');
+  }
+
+  // click en cards
+  cards.forEach(function(c, idx){ c.addEventListener('click', function(){ show(idx); }); });
+
+  // navegación
+  document.querySelector('#serviceModal .prev').addEventListener('click', function(){
+    current = (current - 1 + cards.length) % cards.length;
+    animateSwap('prev');
+  });
+  document.querySelector('#serviceModal .next').addEventListener('click', function(){
+    current = (current + 1) % cards.length;
+    animateSwap('next');
+  });
+
+  // cierre con la X (backup si data-dismiss no actuara)
+  document.querySelector('#serviceModal .service-close')
+    .addEventListener('click', function(){ $modal.modal('hide'); });
+
+  // teclado
+  document.addEventListener('keydown', function(e){
+    if (!$modal.hasClass('show')) return;
+    if (e.key === 'Escape')     $modal.modal('hide');
+    if (e.key === 'ArrowLeft')  { current = (current - 1 + cards.length) % cards.length; animateSwap('prev'); }
+    if (e.key === 'ArrowRight') { current = (current + 1) % cards.length; animateSwap('next'); }
+  });
 })();
