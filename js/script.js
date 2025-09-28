@@ -190,3 +190,27 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     
 });
+
+// Hover abre dropdown en desktop; click en mobile
+(function () {
+  var mq = window.matchMedia('(min-width: 992px)'); // lg+
+  var dropdown = document.querySelectorAll('.navbar .dropdown');
+
+  function bindHover() {
+    dropdown.forEach(function (dd) {
+      dd.addEventListener('mouseenter', open);
+      dd.addEventListener('mouseleave', close);
+    });
+  }
+  function unbindHover() {
+    dropdown.forEach(function (dd) {
+      dd.removeEventListener('mouseenter', open);
+      dd.removeEventListener('mouseleave', close);
+    });
+  }
+  function open(e){ this.classList.add('show'); this.querySelector('.dropdown-menu').classList.add('show'); this.querySelector('[data-toggle="dropdown"]').setAttribute('aria-expanded','true'); }
+  function close(e){ this.classList.remove('show'); this.querySelector('.dropdown-menu').classList.remove('show'); this.querySelector('[data-toggle="dropdown"]').setAttribute('aria-expanded','false'); }
+
+  function handle(mq){ mq.matches ? bindHover() : unbindHover(); }
+  handle(mq); mq.addListener(handle);
+})();

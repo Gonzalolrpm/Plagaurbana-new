@@ -58,66 +58,115 @@ h3 {
 
 
 // --- NAVEGACIÓN (BARRA SUPERIOR Y PRINCIPAL) ---
+/* SUB-NAV (debajo del nav, no fijo) */
 #navdat {
-    width: 100%;
-    background: $accent-color;
-    position: fixed !important;
-    top: 0;
-    left: 0;
-    color: $light-text-color;
-    height: 36px !important;
-    overflow: hidden;
-    text-align: left;
-    z-index: 9998;
-    font-weight: bold;
+  width: 100%;
+  background: #2b2b2b;        /* gris oscuro del prototipo */
+  position: relative;
+  top: auto; left: auto;
+  color: $light-text-color;
+  height: auto;
+  overflow: visible;
+  text-align: left;
+  z-index: 1020;
+  font-weight: 600;
+  padding: 5px 0;
 
-    .dbar {
-        padding-top: 5px;
-        i { margin-right: 8px; }
-    }
-    
-    a:hover { color: $light-text-color; opacity: 0.8; }
-    
-    .social-icons-top {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        padding-top: 2px;
-        a { font-size: 1.1rem; }
+  .dbar {
+    padding-top: 0;
+
+    a {
+      margin-right: 32px;   /* 👈 separación entre cada item */
+      display: inline-flex;
+      align-items: center;
     }
 
-    @media (max-width: $breakpoint-md) {
-        display: none;
-    }
+    i { margin-right: 7px; }
+  }
+
+  a:hover { color: $light-text-color; opacity: .85; }
+
+  .social-icons-top {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;  /* separación entre íconos sociales */
+    a { font-size: 1.1rem; }
+  }
+
+  /* En mobile lo podés mostrar u ocultar según prefieras */
+  @media (max-width: $breakpoint-md) {
+    /* display: none; */       /* si querés ocultarlo en móviles */
+    font-size: 13px;
+  }
 }
 
+/* NAV PRINCIPAL (fijo tipo sticky arriba) */
 nav.arados {
-    position: fixed !important;
-    top: 36px;
-    left: 0;
-    width: 100%;
-    z-index: 9997;
-    padding: 0 !important;
-    background: $nav-color !important;
-    color: $light-text-color;
-    border-bottom: 1px solid lighten($nav-color, 5%);
+  position: sticky;            /* ← antes era fixed */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1030;               /* por encima del sub-nav */
+  padding: 0 !important;
+  background: $nav-color !important;  /* negro */
+  color: $light-text-color;
+  border-bottom: 1px solid lighten($nav-color, 5%);
 
-    @media (max-width: $breakpoint-md) {
-        top: 0;
-    }
-}
+  .nav-link {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+  }
 
-.logotipo { height: 80px; }
+  /* Estilo del dropdown */
+  .dropdown-menu {
+    background: #111;                 // fondo oscuro
+    border: 1px solid #333;           // borde gris
+    border-radius: 8px;
+    padding: .5rem 0;
+    min-width: 220px;
+    margin-top: 0rem;                // separación del nav
+    box-shadow: 0 6px 18px rgba(0,0,0,.4);
+    z-index: 2000;                    // sobre el sub-nav
+  }
+
+  .dropdown-item {
+    color: #fff;
+    font-weight: 500;
+    padding: .6rem 1.2rem;
+    transition: background .2s ease, color .2s ease, transform .15s ease;
+  }
+
+  .dropdown-item:hover {
+    background: #222;
+    color: $accent-color;             // o #7f3eff si querés violeta
+    transform: translateX(4px);       // efecto estético opcional
+  }
+
+  .dropdown-divider {
+    border-top: 1px solid rgba(255,255,255,.08);
+    margin: .25rem 0;
+  }
+}  
+
+  /* Si usás un chevron custom y no querés el caret de Bootstrap 
+  .dropdown-toggle::after { display: none; }
+}*/
+
+/* Detalles del nav */
+.logotipo { height: 80px; }   
+
 .navbar-toggler {
-    border-color: #D0D0D0 !important;
-    .navbar-toggler-icon {
-        background: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.7)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") center center no-repeat;
-    }
+  border-color: #D0D0D0 !important;
+  .navbar-toggler-icon {
+    background: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.7)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") center center no-repeat;
+  }
 }
 
+/* Links del nav */
 .cosechadora a {
-    color: $light-text-color;
-    &:hover { color: $accent-color; }
+  color: $light-text-color;
+  &:hover { color: $accent-color; }    /* o tu violeta si ya lo definiste */
 }
 
 
@@ -140,42 +189,38 @@ nav.arados {
 }
 
 
-// --- SECCIÓN HERO (VIDEO Y FORMULARIO) ---
-#hero-form {
-    position: relative;
-    padding: 8rem 0;
-    color: $light-text-color;
-    min-height: 90vh;
-    display: flex;
-    align-items: center;
+// --- SECCIÓN HERO (IMAGEN Y FORMULARIO) --- //
+#hero-form.hero {
+  position: relative;
+  padding: 6rem 0;
+  color: $light-text-color;
+  min-height: 75vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
 
-    .hero-video {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        min-width: 100%;
-        min-height: 100%;
-        width: auto;
-        height: auto;
-        z-index: -2;
-        transform: translateX(-50%) translateY(-50%);
-        background-size: cover;
-    }
-    &::before {
-        content: '';
-        position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background: rgba(0,0,0,0.6);
-        z-index: -1;
-    }
+  /* Fondo con IMAGEN (cambia la ruta si usas otra) */
+  &::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url('../img/fumigacion.jpeg') center/cover no-repeat;
+    z-index: -2;
+  }
 
-    .text-content {
-        h1 { font-size: 3.5rem; font-weight: 900; }
-        .subtitle {
-            font-size: 1.3rem;
-            strong { color: $accent-color; }
-        }
-    }
+  /* Capa de contraste (ayuda a que el texto siempre se lea) */
+  &::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,.25) 0%, rgba(0,0,0,.45) 60%, rgba(0,0,0,.55) 100%);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .text-content {
+    padding-right: 3rem;                 /* + aire a la derecha */
+    h1 { font-size: 3.5rem; font-weight: 900; }
+    .subtitle { font-size: 1.3rem; strong { color: $accent-color; } }
+  }
     
     .plagas-iconos {
         display: flex;
@@ -200,6 +245,8 @@ nav.arados {
     }
     
     .form-container {
+        margin-left: 0;        /* <- importante */
+        padding-left: 6rem;    /* separa sin romper el grid */
         form {
             text-align: left;
             width: 380px;
@@ -253,7 +300,7 @@ nav.arados {
 }
 
 
-// --- SECCIONES DE CONTENIDO ---
+// --- SECCIONES DE CONTENIDO --- //
 .services-section { padding: 90px 0; }
 .about-section { padding: 90px 0; background-color: $light-grey-bg; }
 

@@ -1,7 +1,8 @@
+@charset "UTF-8";
 html, body {
   font-family: "Roboto", arial, sans-serif !important;
   color: #ffffff;
-  background-color: #16101a;
+  background-color: #2B2B2B;
   text-align: center;
   font-size: 16px;
   scroll-behavior: smooth;
@@ -30,7 +31,7 @@ a {
   text-decoration: none !important;
 }
 a:hover {
-  color: #e74c3c;
+  color: #5E17EB;
 }
 
 h1, h2, h3, h4, h5, .footn {
@@ -73,61 +74,100 @@ h3 {
   }
 }
 
+/* SUB-NAV (debajo del nav, no fijo) */
 #navdat {
   width: 100%;
-  background: #e74c3c;
-  position: fixed !important;
-  top: 0;
-  left: 0;
+  background: #2b2b2b; /* gris oscuro del prototipo */
+  position: relative;
+  top: auto;
+  left: auto;
   color: #ffffff;
-  height: 36px !important;
-  overflow: hidden;
+  height: auto;
+  overflow: visible;
   text-align: left;
-  z-index: 9998;
-  font-weight: bold;
+  z-index: 1020;
+  font-weight: 600;
+  padding: 5px 0;
+  /* En mobile lo podés mostrar u ocultar según prefieras */
 }
 #navdat .dbar {
-  padding-top: 5px;
+  padding-top: 0;
+}
+#navdat .dbar a {
+  margin-right: 32px; /* 👈 separación entre cada item */
+  display: inline-flex;
+  align-items: center;
 }
 #navdat .dbar i {
-  margin-right: 8px;
+  margin-right: 7px;
 }
 #navdat a:hover {
   color: #ffffff;
-  opacity: 0.8;
+  opacity: 0.85;
 }
 #navdat .social-icons-top {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding-top: 2px;
+  gap: 1.2rem; /* separación entre íconos sociales */
 }
 #navdat .social-icons-top a {
   font-size: 1.1rem;
 }
 @media (max-width: 768px) {
   #navdat {
-    display: none;
+    /* display: none; */ /* si querés ocultarlo en móviles */
+    font-size: 13px;
   }
 }
 
+/* NAV PRINCIPAL (fijo tipo sticky arriba) */
 nav.arados {
-  position: fixed !important;
-  top: 36px;
+  position: sticky; /* ← antes era fixed */
+  top: 0;
   left: 0;
   width: 100%;
-  z-index: 9997;
+  z-index: 1030; /* por encima del sub-nav */
   padding: 0 !important;
-  background: #16101a !important;
+  background: #000000 !important; /* negro */
   color: #ffffff;
-  border-bottom: 1px solid #231a2a;
+  border-bottom: 1px solid rgb(12.75, 12.75, 12.75);
+  /* Estilo del dropdown */
 }
-@media (max-width: 768px) {
-  nav.arados {
-    top: 0;
-  }
+nav.arados .nav-link {
+  font-size: 16px;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+}
+nav.arados .dropdown-menu {
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 0.5rem 0;
+  min-width: 220px;
+  margin-top: 0rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+  z-index: 2000;
+}
+nav.arados .dropdown-item {
+  color: #fff;
+  font-weight: 500;
+  padding: 0.6rem 1.2rem;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+nav.arados .dropdown-item:hover {
+  background: #222;
+  color: #5E17EB;
+  transform: translateX(4px);
+}
+nav.arados .dropdown-divider {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin: 0.25rem 0;
 }
 
+/* Si usás un chevron custom y no querés el caret de Bootstrap 
+  .dropdown-toggle::after { display: none; }
+}*/
+/* Detalles del nav */
 .logotipo {
   height: 80px;
 }
@@ -139,11 +179,13 @@ nav.arados {
   background: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.7)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") center center no-repeat;
 }
 
+/* Links del nav */
 .cosechadora a {
   color: #ffffff;
+  /* o tu violeta si ya lo definiste */
 }
 .cosechadora a:hover {
-  color: #e74c3c;
+  color: #5E17EB;
 }
 
 .btn-new {
@@ -163,53 +205,52 @@ nav.arados {
   color: #131414;
 }
 
-#hero-form {
+#hero-form.hero {
   position: relative;
-  padding: 8rem 0;
+  padding: 6rem 0;
   color: #ffffff;
-  min-height: 90vh;
+  min-height: 75vh;
   display: flex;
   align-items: center;
+  overflow: hidden;
+  /* Fondo con IMAGEN (cambia la ruta si usas otra) */
+  /* Capa de contraste (ayuda a que el texto siempre se lea) */
 }
-#hero-form .hero-video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  z-index: -2;
-  transform: translateX(-50%) translateY(-50%);
-  background-size: cover;
-}
-#hero-form::before {
+#hero-form.hero::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: -1;
+  inset: 0;
+  background: url("../img/fumigacion.jpeg") center/cover no-repeat;
+  z-index: -2;
 }
-#hero-form .text-content h1 {
+#hero-form.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.45) 60%, rgba(0, 0, 0, 0.55) 100%);
+  z-index: -1;
+  pointer-events: none;
+}
+#hero-form.hero .text-content {
+  padding-right: 3rem; /* + aire a la derecha */
+}
+#hero-form.hero .text-content h1 {
   font-size: 3.5rem;
   font-weight: 900;
 }
-#hero-form .text-content .subtitle {
+#hero-form.hero .text-content .subtitle {
   font-size: 1.3rem;
 }
-#hero-form .text-content .subtitle strong {
-  color: #e74c3c;
+#hero-form.hero .text-content .subtitle strong {
+  color: #5E17EB;
 }
-#hero-form .plagas-iconos {
+#hero-form.hero .plagas-iconos {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
   margin-top: 2rem;
 }
-#hero-form .plagas-iconos span {
+#hero-form.hero .plagas-iconos span {
   background: rgba(0, 0, 0, 0.5);
   padding: 0.5rem 1rem;
   border-radius: 20px;
@@ -219,66 +260,70 @@ nav.arados {
   gap: 0.5rem;
   transition: all 0.2s;
 }
-#hero-form .plagas-iconos span:hover {
+#hero-form.hero .plagas-iconos span:hover {
   transform: translateY(-3px);
 }
-#hero-form .plagas-iconos i {
-  color: #e74c3c;
+#hero-form.hero .plagas-iconos i {
+  color: #5E17EB;
 }
-#hero-form .form-container form {
+#hero-form.hero .form-container {
+  margin-left: 0; /* <- importante */
+  padding-left: 6rem; /* separa sin romper el grid */
+}
+#hero-form.hero .form-container form {
   text-align: left;
   width: 380px;
   max-width: 100%;
-  background: rgba(22, 16, 26, 0.6);
+  background: rgba(43, 43, 43, 0.6);
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
   color: #EDEDED;
   padding: 30px 15px;
   border-radius: 3px;
-  border-bottom: 5px solid #e74c3c;
+  border-bottom: 5px solid #5E17EB;
 }
-#hero-form .form-container .form-title {
+#hero-form.hero .form-container .form-title {
   color: #ffffff;
   font-size: 1.8rem;
   font-weight: bold;
   text-align: center;
   margin-bottom: 1rem;
 }
-#hero-form .form-container .form-control {
+#hero-form.hero .form-container .form-control {
   border-radius: 0;
   border: 0;
   background-color: #EDEDED;
   color: #131414;
 }
-#hero-form .form-container .form-control:active, #hero-form .form-container .form-control:focus {
+#hero-form.hero .form-container .form-control:active, #hero-form.hero .form-container .form-control:focus {
   background-color: #EDEDED;
   color: #131414;
   box-shadow: none;
 }
-#hero-form .form-container .btn-new {
+#hero-form.hero .form-container .btn-new {
   width: 100%;
-  border-color: #e74c3c;
-  background: #e74c3c;
+  border-color: #5E17EB;
+  background: #5E17EB;
   color: #ffffff;
 }
-#hero-form .form-container .btn-new:hover {
-  background: #d62c1a;
-  border-color: #d62c1a;
+#hero-form.hero .form-container .btn-new:hover {
+  background: rgb(74.75, 16.4285714286, 190.5714285714);
+  border-color: rgb(74.75, 16.4285714286, 190.5714285714);
   color: #ffffff;
 }
-#hero-form .form-container #form-message {
+#hero-form.hero .form-container #form-message {
   text-align: center;
   margin-top: 1rem;
   font-weight: bold;
 }
 @media (max-width: 992px) {
-  #hero-form .form-container {
+  #hero-form.hero .form-container {
     display: none;
   }
-  #hero-form .text-content {
+  #hero-form.hero .text-content {
     text-align: center;
   }
-  #hero-form .plagas-iconos {
+  #hero-form.hero .plagas-iconos {
     justify-content: center;
   }
 }
@@ -289,7 +334,7 @@ nav.arados {
 
 .about-section {
   padding: 90px 0;
-  background-color: #231a2a;
+  background-color: rgb(55.75, 55.75, 55.75);
 }
 
 .section-title {
@@ -394,7 +439,7 @@ nav.arados {
   gap: 1rem;
 }
 .about-section .beneficios-lista i {
-  color: #e74c3c;
+  color: #5E17EB;
   font-size: 1.5rem;
   width: 30px;
   text-align: center;
@@ -405,7 +450,7 @@ nav.arados {
 
 #clientes {
   padding: 90px 0;
-  background-color: #16101a;
+  background-color: #2B2B2B;
 }
 
 .logo-slider {
@@ -423,11 +468,11 @@ nav.arados {
 }
 .logo-slider::before {
   left: 0;
-  background: linear-gradient(to right, #16101a, transparent);
+  background: linear-gradient(to right, #2B2B2B, transparent);
 }
 .logo-slider::after {
   right: 0;
-  background: linear-gradient(to left, #16101a, transparent);
+  background: linear-gradient(to left, #2B2B2B, transparent);
 }
 
 .logos-track {
@@ -474,18 +519,18 @@ nav.arados {
   font-size: 2.5rem;
 }
 #interesado .btn-new {
-  background: #e74c3c;
-  border-color: #e74c3c;
+  background: #5E17EB;
+  border-color: #5E17EB;
 }
 #interesado .btn-new:hover {
   background: #ffffff;
-  color: #e74c3c;
+  color: #5E17EB;
   border-color: #ffffff;
 }
 
 #socios {
   padding: 10px 0;
-  background-color: #231a2a;
+  background-color: rgb(55.75, 55.75, 55.75);
 }
 #socios .socios-grid {
   display: flex;
@@ -747,7 +792,7 @@ nav.arados {
   }
 }
 #footer {
-  background: #16101a !important;
+  background: #000000 !important;
   color: #ffffff;
   padding: 3rem 0;
 }
@@ -761,7 +806,7 @@ nav.arados {
   color: #D0D0D0 !important;
 }
 #footer a:hover {
-  color: #e74c3c !important;
+  color: #5E17EB !important;
 }
 #footer .agricultura, #footer .logopie, #footer .linkredes {
   text-align: center;
@@ -828,7 +873,7 @@ nav.arados {
 }
 
 #firma {
-  background: #16101a;
+  background: #2B2B2B;
   color: #b0b0b0;
   text-align: center;
   padding: 1.5rem;
