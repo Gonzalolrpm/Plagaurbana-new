@@ -887,21 +887,68 @@ nav.arados {
   }
 
   /* Datos de contacto */
-  .contact-data {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    gap: 14px;
-    font-size: clamp(16px, 1.6vw, 20px);
+ /* ===== Tira compacta de contacto ===== */
+.contact-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;     /* centrado en desktop */
+  gap: 32px;                   /* separación entre items */
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 8px 0;              /* alto reducido */
+  line-height: 1;              /* evita alto extra por línea */
+  color: $light-text-color;    /* usa tu variable de color */
 
-    li {
-      display: flex;
-      align-items: center;
-      gap: .7rem;
-      i { font-size: 1.2em; opacity: .9; }
+  /* evita que estilos heredados (p, h*) agranden esto */
+  font: inherit;
+
+  .contact-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: inherit;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;                /* sin padding extra */
+    white-space: nowrap;       /* que no corte números */
+    transition: opacity .15s ease;
+
+    &:hover { opacity: .85; }
+
+    i {
+      font-size: 20px;         /* tamaño de icono */
+      width: 1.1em;            /* ancho fijo para alinear */
+      text-align: center;
+      opacity: .95;
+    }
+
+    span {
+      font-size: 30px;         /* tamaño de texto compacto */
+      letter-spacing: .4px;
     }
   }
+
+  /* Variante compacta (idéntica visualmente pero garantizamos altura) */
+  &.compact {
+    padding: 6px 0;
+
+    .contact-item span { font-size: 15px; }
+    .contact-item i    { font-size: 15px; }
+  }
+}
+
+/* Responsivo: en pantallas chicas centrado y un poco más de separación */
+@media (max-width: 768px) {
+  .contact-bar {
+    gap: 18px;
+    padding: 10px 0;
+    justify-content: center;
+
+    .contact-item span { font-size: 14.5px; }
+    .contact-item i    { font-size: 16px; }
+  }
+}
 
   /* Formulario más pequeño */
   .contact-form-col { display: flex; justify-content: flex-end; }
@@ -960,7 +1007,7 @@ nav.arados {
   text-align: center;
 
   .section-title {
-    font-size: clamp(26px, 3vw, 38px);
+    font-size: clamp(28px, 4.2vw, 48px);
     font-weight: 800;
     margin-bottom: 60px;
     color: #fff;
@@ -1053,91 +1100,58 @@ nav.arados {
     max-height: 70px;
   }
 }
-// --- SECCIÓN "INTERESADO" (CTA final) ---
-#interesado {
-  padding: 90px 0;
-  background: url(../img/cta-background.jpg) center fixed;
-  background-size: cover;
-  color: $light-text-color;
-  h1 {
-    font-size: 2.5rem;
+/*GRUPO PREVEN*/
+#grupo-preven {
+  padding: 80px 0;
+  background: #2d2d2d;
+  text-align: center;
+
+  .section-title {
+    font-size: clamp(28px, 4.2vw, 48px);
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: #fff;
   }
-  .btn-new {
-    background: $accent-color;
-    border-color: $accent-color;
+
+  .preven-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px; /* más separación */
+    flex-wrap: wrap;
+    cursor: pointer;
+  }
+
+  .preven-logo {
+    background: #111;
+    border-radius: 14px;
+    width: 200px;   /* cuadrado fijo */
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* hace que ocupe todo el cuadro */
+      border-radius: 10px;
+    }
+
     &:hover {
-      background: $light-text-color;
-      color: $accent-color;
-      border-color: $light-text-color;
+      transform: translateY(-6px) scale(1.05);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.6);
     }
   }
 }
 
-// SECCIÓN SOCIOS (CON LA CORRECCIÓN)
-// ==================================
-#socios {
-  padding: 10px 0;
-  background-color: $light-grey-bg;
-
-  .socios-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .socio-logo {
-    // El logo superior ocupa toda la fila para él solo
-    &.top {
-      flex-basis: 100%;
-      display: flex;
-      justify-content: center;
-      margin-bottom: 1rem;
-    }
-
-    // El 'a' es el contenedor circular
-    a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 180px;
-      height: 180px;
-      background-color: #ffffff;
-      border-radius: 50%;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-      // ¡LA SOLUCIÓN! Esta línea esconde las esquinas de la imagen que se desbordan.
-      overflow: hidden;
-
-      &:hover {
-        transform: scale(1.05) translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-      }
-    }
-
-    // La imagen se ajusta dentro del círculo
-    img {
-      // Hacemos la imagen un poco más grande que el contenedor para asegurarnos
-      // de que el fondo negro llene el círculo, pero sin que se vean los bordes blancos.
-      width: 100%;
-      height: 100%;
-      object-fit: cover; // Asegura que la imagen cubra todo el espacio sin deformarse
-    }
-  }
-
-  // Adaptación para móviles
-  @media (max-width: $breakpoint-md) {
-    .socios-grid {
-      flex-direction: column;
-      gap: 3rem;
-    }
-    .socio-logo.top {
-      margin-bottom: 0;
-    }
+@media (max-width: 768px) {
+  #grupo-preven .preven-logo {
+    width: 120px;
+    height: 120px;
   }
 }
 
