@@ -12,6 +12,7 @@ body {
   text-align: center;
   font-size: 16px;
   scroll-behavior: smooth;
+  position: relative;
 
   @media (max-width: $breakpoint-md) {
     text-align: left;
@@ -841,9 +842,9 @@ nav.arados {
   .section-kicker {
     text-align: center;
     font-weight: 800;
-    letter-spacing: .3px;
+    letter-spacing: 0.3px;
     color: #eaeaea;
-    font-size: clamp(28Px, 4.2vw, 48px);
+    font-size: clamp(28px, 4.2vw, 48px);
     margin-bottom: clamp(14px, 2vw, 20px);
   }
 
@@ -875,7 +876,9 @@ nav.arados {
     text-overflow: ellipsis;
   }
   @media (max-width: 992px) {
-    .title.one-line { white-space: normal; }
+    .title.one-line {
+      white-space: normal;
+    }
   }
 
   .lead {
@@ -887,84 +890,99 @@ nav.arados {
   }
 
   /* Datos de contacto */
- /* ===== Tira compacta de contacto ===== */
-.contact-bar {
-  display: flex;
-  align-items: center;
-  justify-content: center;     /* centrado en desktop */
-  gap: 32px;                   /* separación entre items */
-  flex-wrap: wrap;
-  width: 100%;
-  padding: 8px 0;              /* alto reducido */
-  line-height: 1;              /* evita alto extra por línea */
-  color: $light-text-color;    /* usa tu variable de color */
-
-  /* evita que estilos heredados (p, h*) agranden esto */
-  font: inherit;
-
-  .contact-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    color: inherit;
-    font-weight: 600;
-    margin: 0;
-    padding: 0;                /* sin padding extra */
-    white-space: nowrap;       /* que no corte números */
-    transition: opacity .15s ease;
-
-    &:hover { opacity: .85; }
-
-    i {
-      font-size: 20px;         /* tamaño de icono */
-      width: 1.1em;            /* ancho fijo para alinear */
-      text-align: center;
-      opacity: .95;
-    }
-
-    span {
-      font-size: 30px;         /* tamaño de texto compacto */
-      letter-spacing: .4px;
-    }
-  }
-
-  /* Variante compacta (idéntica visualmente pero garantizamos altura) */
-  &.compact {
-    padding: 6px 0;
-
-    .contact-item span { font-size: 15px; }
-    .contact-item i    { font-size: 15px; }
-  }
-}
-
-/* Responsivo: en pantallas chicas centrado y un poco más de separación */
-@media (max-width: 768px) {
+  /* ===== Tira compacta de contacto ===== */
   .contact-bar {
-    gap: 18px;
-    padding: 10px 0;
-    justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* centrado en desktop */
+    gap: 32px; /* separación entre items */
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 8px 0; /* alto reducido */
+    line-height: 1; /* evita alto extra por línea */
+    color: $light-text-color; /* usa tu variable de color */
 
-    .contact-item span { font-size: 14.5px; }
-    .contact-item i    { font-size: 16px; }
+    /* evita que estilos heredados (p, h*) agranden esto */
+    font: inherit;
+
+    .contact-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: inherit;
+      font-weight: 600;
+      margin: 0;
+      padding: 0; /* sin padding extra */
+      white-space: nowrap; /* que no corte números */
+      transition: opacity 0.15s ease;
+
+      &:hover {
+        opacity: 0.85;
+      }
+
+      i {
+        font-size: 20px; /* tamaño de icono */
+        width: 1.1em; /* ancho fijo para alinear */
+        text-align: center;
+        opacity: 0.95;
+      }
+
+      span {
+        font-size: 30px; /* tamaño de texto compacto */
+        letter-spacing: 0.4px;
+      }
+    }
+
+    /* Variante compacta (idéntica visualmente pero garantizamos altura) */
+    &.compact {
+      padding: 6px 0;
+
+      .contact-item span {
+        font-size: 15px;
+      }
+      .contact-item i {
+        font-size: 15px;
+      }
+    }
   }
-}
+
+  /* Responsivo: en pantallas chicas centrado y un poco más de separación */
+  @media (max-width: 768px) {
+    .contact-bar {
+      gap: 18px;
+      padding: 10px 0;
+      justify-content: center;
+
+      .contact-item span {
+        font-size: 14.5px;
+      }
+      .contact-item i {
+        font-size: 16px;
+      }
+    }
+  }
 
   /* Formulario más pequeño */
-  .contact-form-col { display: flex; justify-content: flex-end; }
+  .contact-form-col {
+    display: flex;
+    justify-content: flex-end;
+  }
 
   .contact-form {
     width: min(520px, 100%);
     padding: 20px;
-    background: rgba(255,255,255,.05);
-    border: 1px solid rgba(255,255,255,.12);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 16px;
 
-    .form-group { margin-bottom: 14px; }
+    .form-group {
+      margin-bottom: 14px;
+    }
 
     .form-control {
       width: 100%;
-      height: 52px;               /* ↓ más pequeño */
+      height: 52px; /* ↓ más pequeño */
       border-radius: 10px;
       border: 0;
       padding: 0 14px;
@@ -972,21 +990,29 @@ nav.arados {
       background: #fff;
       color: #111;
 
-      &::placeholder { color: #7d7d7d; }
+      &::placeholder {
+        color: #7d7d7d;
+      }
     }
-    textarea.form-control { min-height: 130px; padding-top: 10px; }
+    textarea.form-control {
+      min-height: 130px;
+      padding-top: 10px;
+    }
 
     .btn-primary-wide {
       width: 100%;
-      height: 54px;               /* ↓ más bajo */
+      height: 54px; /* ↓ más bajo */
       border: 0;
       border-radius: 10px;
       background: #5b29ff;
       color: #fff;
       font-weight: 800;
-      letter-spacing: .2px;
+      letter-spacing: 0.2px;
       transition: 0.2s;
-      &:hover { filter: brightness(1.05); transform: translateY(-1px); }
+      &:hover {
+        filter: brightness(1.05);
+        transform: translateY(-1px);
+      }
     }
   }
 
@@ -996,8 +1022,12 @@ nav.arados {
       grid-template-columns: 1fr;
       gap: 28px;
     }
-    .contact-form-col { justify-content: center; }
-    .lead { max-width: 65ch; }
+    .contact-form-col {
+      justify-content: center;
+    }
+    .lead {
+      max-width: 65ch;
+    }
   }
 }
 /* ===== CLIENTES ===== */
@@ -1072,7 +1102,7 @@ nav.arados {
   max-height: 80px;
   object-fit: contain;
   filter: grayscale(100%) brightness(1.6);
-  transition: filter .3s ease;
+  transition: filter 0.3s ease;
   user-select: none;
   pointer-events: none; /* (opcional) evita hover glitch en móvil */
 }
@@ -1125,7 +1155,7 @@ nav.arados {
   .preven-logo {
     background: #111;
     border-radius: 14px;
-    width: 200px;   /* cuadrado fijo */
+    width: 200px; /* cuadrado fijo */
     height: 200px;
     display: flex;
     align-items: center;
@@ -1494,37 +1524,62 @@ nav.arados {
   font-size: 14px;
 }
 
-// --- ANIMACIÓN DE HORMIGAS (VERSIÓN FINAL CON IMAGEN) ---
+// ===============================
+// HORMIGAS — Variables
+// ===============================
+$nav-z: 12031;          // z-index del nav (referencia)
+$ants-z: 12000;         // hormigas por encima del contenido y por debajo del nav
+$ant-w: 20px;           // ancho de cada hormiga (coincidir con JS)
+$ant-h: 12px;           // alto de cada hormiga  (coincidir con JS)
+$ant-shadow: rgba(0, 0, 0, 0.9); // sombra sutil
+
+// ===============================
+// Capa fija que cubre TODO el viewport
+// (si necesitás que pase por encima del nav, subí $ants-z > $nav-z)
+// ===============================
+.ant-layer {
+  position: absolute;      // ← clave para que se vea en toda la página
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;        // viewport completo
+  pointer-events: none; // no bloquea clics
+  z-index: $ants-z;
+  contain: layout paint; // micro-optimización
+}
+
+// ===============================
+// Apariencia de CADA hormiga
+// ===============================
 .ant {
-  position: fixed;
-  width: 30px; // Ajustamos el tamaño a la nueva imagen
-  height: 30px;
-  z-index: 10000;
-  pointer-events: none;
+  position: absolute;
+  width: $ant-w;
+  height: $ant-h;
+  transform-origin: 50% 50%;
+  will-change: transform, left, top;
+  filter: drop-shadow(0 1px 1px $ant-shadow);
+  opacity: .95;
 
-  // Ruta a la imagen que descargaste
-  background-image: url("../img/ant.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  // Animación de bamboleo simple, ligera y efectiva
-  animation: wiggle 0.5s linear infinite;
-}
-
-// Keyframes para la animación de bamboleo
-@keyframes wiggle {
-  0%,
-  100% {
-    transform: rotate(0deg);
-  }
-  50% {
-    transform: rotate(5deg);
-  }
-}
-
-// Desactivar la animación en pantallas pequeñas
-@media (max-width: $breakpoint-md) {
-  .ant {
-    display: none !important;
+  &::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 60'>\
+  <g fill='%23ffffff' stroke='%23ffffff' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'>\
+    <path d='M22 24 L10 14'/>\
+    <path d='M22 36 L10 46'/>\
+    <ellipse cx='28' cy='30' rx='10' ry='9'/>\
+    <ellipse cx='56' cy='30' rx='12' ry='10'/>\
+    <ellipse cx='92' cy='30' rx='18' ry='14'/>\
+    <path d='M50 22 L36 10'/>\
+    <path d='M62 22 L76 10'/>\
+    <path d='M46 30 L32 30'/>\
+    <path d='M66 30 L80 30'/>\
+    <path d='M50 38 L36 50'/>\
+    <path d='M62 38 L76 50'/>\
+  </g>\
+</svg>") no-repeat center / contain;
   }
 }

@@ -7,6 +7,7 @@ body {
   text-align: center;
   font-size: 16px;
   scroll-behavior: smooth;
+  position: relative;
 }
 @media (max-width: 768px) {
   html,
@@ -804,7 +805,7 @@ nav.arados .dropdown-divider {
   font-weight: 800;
   letter-spacing: 0.3px;
   color: #eaeaea;
-  font-size: clamp(28Px, 4.2vw, 48px);
+  font-size: clamp(28px, 4.2vw, 48px);
   margin-bottom: clamp(14px, 2vw, 20px);
 }
 .contacto .container {
@@ -1417,28 +1418,30 @@ nav.arados .dropdown-divider {
   font-size: 14px;
 }
 
-.ant {
-  position: fixed;
-  width: 30px;
-  height: 30px;
-  z-index: 10000;
+.ant-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
   pointer-events: none;
-  background-image: url("../img/ant.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  animation: wiggle 0.5s linear infinite;
+  z-index: 12000;
+  contain: layout paint;
 }
 
-@keyframes wiggle {
-  0%, 100% {
-    transform: rotate(0deg);
-  }
-  50% {
-    transform: rotate(5deg);
-  }
+.ant {
+  position: absolute;
+  width: 20px;
+  height: 12px;
+  transform-origin: 50% 50%;
+  will-change: transform, left, top;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.9));
+  opacity: 0.95;
 }
-@media (max-width: 768px) {
-  .ant {
-    display: none !important;
-  }
+.ant::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 60'>  <g fill='%23ffffff' stroke='%23ffffff' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'>    <path d='M22 24 L10 14'/>    <path d='M22 36 L10 46'/>    <ellipse cx='28' cy='30' rx='10' ry='9'/>    <ellipse cx='56' cy='30' rx='12' ry='10'/>    <ellipse cx='92' cy='30' rx='18' ry='14'/>    <path d='M50 22 L36 10'/>    <path d='M62 22 L76 10'/>    <path d='M46 30 L32 30'/>    <path d='M66 30 L80 30'/>    <path d='M50 38 L36 50'/>    <path d='M62 38 L76 50'/>  </g></svg>") no-repeat center/contain;
 }
