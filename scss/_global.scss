@@ -1,0 +1,72 @@
+// --- ESTILOS GLOBALES Y RESET BÁSICO ---
+html,
+body {
+  font-family: $primary-font !important;
+  color: $light-text-color;
+  background-color: $primary-color;
+  text-align: center;
+  font-size: 16px;
+  scroll-behavior: smooth;
+  position: relative;
+  overflow-x: hidden; // seguridad extra, para que no hayas scroll con las hormigas
+
+  @media (max-width: $breakpoint-md) {
+    text-align: left;
+  }
+  @media (max-width: $breakpoint-sm) {
+    font-size: 14px;
+  }
+}
+
+.clear {
+  clear: both;
+}
+img {
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none !important;
+  &:hover {
+    color: $accent-color;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+.footn {
+  font-weight: 700;
+}
+
+h1 {
+  margin: 0 auto 10px;
+  text-transform: uppercase;
+  @media (max-width: $breakpoint-xl) {
+    font-size: 2rem;
+  }
+  @media (max-width: $breakpoint-sm) {
+    font-size: 30px;
+  }
+}
+
+h3 {
+  font-weight: 700;
+  font-size: 40px;
+  color: $light-text-color;
+  text-align: center;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+
+  @media (max-width: $breakpoint-xxl) {
+    font-size: 34px;
+  }
+  @media (max-width: $breakpoint-xl) {
+    font-size: 28px;
+  }
+}

@@ -1,0 +1,1122 @@
+@charset "UTF-8";
+html,
+body {
+  font-family: "Roboto", arial, sans-serif !important;
+  color: #ffffff;
+  background-color: #2B2B2B;
+  text-align: center;
+  font-size: 16px;
+  scroll-behavior: smooth;
+  position: relative;
+  overflow-x: hidden;
+}
+@media (max-width: 768px) {
+  html,
+  body {
+    text-align: left;
+  }
+}
+@media (max-width: 576px) {
+  html,
+  body {
+    font-size: 14px;
+  }
+}
+
+.clear {
+  clear: both;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none !important;
+}
+a:hover {
+  color: #5E17EB;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+.footn {
+  font-weight: 700;
+}
+
+h1 {
+  margin: 0 auto 10px;
+  text-transform: uppercase;
+}
+@media (max-width: 1199px) {
+  h1 {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 576px) {
+  h1 {
+    font-size: 30px;
+  }
+}
+
+h3 {
+  font-weight: 700;
+  font-size: 40px;
+  color: #ffffff;
+  text-align: center;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+@media (max-width: 1530px) {
+  h3 {
+    font-size: 34px;
+  }
+}
+@media (max-width: 1199px) {
+  h3 {
+    font-size: 28px;
+  }
+}
+
+/* === DRONE TOPBAR (BARRA VERDE LANDING DRONE) === */
+/* Este bloque debe ir al FINAL del stylesheet para tener prioridad visual. */
+/* === DRONE TOPBAR (BARRA VERDE LANDING DRONE) ===================== */
+/* Pegar este bloque al final del archivo SCSS que compila la landing */
+/* === DRONE TOPBAR (BARRA VERDE LANDING DRONE) ===================== */
+.drone-topbar {
+  width: 100%;
+  background-color: #304d20;
+  color: #ffffff;
+  position: relative;
+  z-index: 1020;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  /* En mobile se ve igual de fuerte que el header */
+  /* En mobile: ocultar navegación interna si se desea */
+}
+@media (min-width: 768px) {
+  .drone-topbar {
+    font-size: 16px;
+    line-height: 1.4;
+  }
+}
+@media (max-width: 768px) {
+  .drone-topbar .drone-topbar__nav {
+    display: none;
+  }
+}
+
+/* Contenedor interno (equivale a tu `.dbar`) */
+.drone-topbar__inner {
+  max-width: 1320px; /* ⬅️ igual al container del header (podés ajustar a 1200/1280/1440 según tu diseño) */
+  margin: 0 auto;
+  padding-left: 5rem; /* ⬅️ más aire lateral */
+  padding-right: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  row-gap: 0.75rem; /* espacio vertical mobile */
+}
+@media (min-width: 768px) {
+  .drone-topbar__inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between; /* izquierda / derecha */
+    text-align: left;
+    row-gap: 0;
+    -moz-column-gap: 1rem;
+         column-gap: 1rem;
+  }
+}
+
+/* BLOQUE CONTACTO (lado izquierdo en desktop) */
+.drone-topbar__contact {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* centrado en mobile */
+  align-items: center;
+  row-gap: 0.5rem;
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+}
+@media (min-width: 768px) {
+  .drone-topbar__contact {
+    justify-content: flex-start; /* izquierda desktop */
+  }
+}
+
+.drone-topbar__contact-item {
+  display: flex;
+}
+
+.drone-topbar__contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 40px; /* hit area accesible */
+  line-height: 1.3;
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+  font-size: inherit; /* hereda 16/17px */
+  font-weight: inherit; /* hereda 700 */
+}
+.drone-topbar__contact-link:hover, .drone-topbar__contact-link:focus {
+  text-decoration: underline;
+  outline: none;
+}
+.drone-topbar__contact-link:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.drone-topbar__icon {
+  flex-shrink: 0;
+  font-size: 1rem;
+  line-height: 1;
+  color: #fff;
+}
+
+.drone-topbar__text {
+  white-space: nowrap;
+}
+
+/* BLOQUE NAV INTERNO (lado derecho en desktop) */
+.drone-topbar__nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* centrado en mobile */
+  align-items: center;
+  row-gap: 0.5rem;
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+}
+@media (min-width: 768px) {
+  .drone-topbar__nav {
+    justify-content: flex-end; /* derecha desktop */
+    -moz-column-gap: 1rem;
+         column-gap: 1rem; /* más aire estilo nav principal */
+  }
+}
+
+.drone-topbar__nav-item {
+  display: flex;
+}
+
+.drone-topbar__nav-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  line-height: 1.3;
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+  font-size: inherit; /* hereda 16/17px */
+  font-weight: inherit; /* hereda 700 */
+}
+.drone-topbar__nav-link:hover, .drone-topbar__nav-link:focus {
+  text-decoration: underline;
+  outline: none;
+}
+.drone-topbar__nav-link:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* =========================
+   HERO DRONE LANDING
+   ========================= */
+.hero-drone {
+  position: relative;
+  width: 100%;
+  min-height: clamp(480px, 60vh, 640px); /* altura flexible ~60vh en desktop */
+  color: #fff;
+  background-color: #000;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: stretch;
+}
+
+/* capa de imagen de fondo */
+.hero-drone__bg {
+  position: absolute;
+  inset: 0;
+  background-image: url("../img/T50.jpg");
+  background-repeat: no-repeat;
+  background-position: center 50%;
+  background-size: 100%; /* imagen levemente “alejada” */
+  z-index: 0;
+  transition: background-size 0.4s ease;
+}
+
+/* overlay con degradé oscuro hacia abajo */
+.hero-drone__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0.5) 70%, rgba(0, 0, 0, 0.6) 100%);
+  z-index: 1;
+}
+
+/* wrapper interno */
+.hero-drone__inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  width: 100%;
+  min-height: inherit;
+  /* margen/gutter lateral consistente con el resto de la página */
+  padding-left: 2rem;
+  padding-right: 2rem;
+  /* mantener el texto abajo de todo */
+  padding-top: 3rem;
+  padding-bottom: 3rem; /* cerca del pasto */
+}
+
+/* bloque de texto */
+.hero-drone__content {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  text-align: left;
+  max-width: inherit;
+}
+
+/* eyebrow / categoría */
+.hero-drone__eyebrow {
+  margin: 0;
+  font-size: 0.875rem; /* ~14px */
+  font-weight: 600;
+  line-height: 1.4;
+  color: #fff;
+  opacity: 0.9;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* título principal */
+.hero-drone__title {
+  margin: 0;
+  color: #fff;
+  font-weight: 700;
+  line-height: 1.15;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+  /* El Figma muestra un H1 muy grande pero no todo mayúscula histérica.
+     Dejamos tamaño fluido similar a lo que estás viendo:
+     desktop ~48px, mobile ~32px */
+  font-size: clamp(2rem, 1rem + 2vw, 3rem);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+/* descripción */
+.hero-drone__desc {
+  margin: 0;
+  font-weight: 400;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+@media (min-width: 768px) {
+  .hero-drone__desc {
+    font-size: 1.0625rem; /* ~17px */
+    line-height: 1.5;
+  }
+}
+
+/* CTA amarillo */
+.hero-drone__cta {
+  align-self: flex-start;
+  background-color: #f4a41f;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.2;
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+  padding: 0.9rem 1.5rem;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+}
+.hero-drone__cta:hover {
+  background-color: rgb(245.1936170213, 173.8744680851, 55.3063829787);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.65);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+.hero-drone__cta:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+@media (min-width: 768px) {
+  .hero-drone__cta {
+    font-size: 1rem;
+    padding: 1rem 1.75rem;
+    min-height: 50px;
+  }
+}
+
+/* =====================================================
+   HERO DRONE — Mobile overrides (NO cambia desktop)
+   Colocar este bloque al final del archivo
+   ===================================================== */
+@media (max-width: 767.98px) {
+  .hero-drone {
+    min-height: clamp(520px, 70vh, 680px); /* un poco más alta en mobile */
+  }
+  /* La imagen SIEMPRE cubre (sin bordes negros) y muestra más dron */
+  .hero-drone__bg {
+    background-size: cover; /* <- clave para evitar bordes */
+    background-position: center 38%;
+  }
+  /* Overlay más marcado para mejorar legibilidad del texto */
+  .hero-drone__overlay {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.45) 55%, rgba(0, 0, 0, 0.65) 100%);
+  }
+  /* Gutters y colocación del bloque de texto */
+  .hero-drone__inner {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem; /* texto más abajo */
+  }
+  .hero-drone__content {
+    row-gap: 0.85rem;
+    max-width: 34rem; /* ~544px, lectura cómoda */
+  }
+  /* El título ENVUELVE en mobile (sin romper desktop) */
+  .hero-drone__title {
+    white-space: normal; /* <- importante */
+    word-break: normal;
+    letter-spacing: -0.02em;
+    font-size: clamp(1.75rem, 1.1rem + 4vw, 2.5rem); /* ~28–40px */
+  }
+  /* Párrafo más legible en móviles */
+  .hero-drone__desc {
+    max-width: 40ch;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  /* CTA full-width en mobile para mejor tap target */
+  .hero-drone__cta {
+    align-self: stretch;
+    padding: 0.9rem 1.25rem;
+    min-height: 48px;
+  }
+}
+/* Respeto a usuarios con “reducir movimiento” (opcional) */
+@media (prefers-reduced-motion: reduce) {
+  .hero-drone__bg {
+    transition: none !important;
+  }
+  .hero-drone__cta {
+    transition: none !important;
+  }
+}
+/* =========================
+   SECCIÓN: SERVICIOS AÉREOS
+   ========================= */
+.servicios-aereos {
+  background-color: #759863; /* verde claro tipo Figma */
+  color: #fff;
+  padding: 2rem 5rem 3rem 5rem;
+}
+
+.servicios-aereos__inner {
+  max-width: 1360px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+@media (min-width: 768px) {
+  .servicios-aereos__inner {
+    gap: 2.5rem;
+  }
+}
+
+/* Título "Servicios aéreos" */
+.servicios-aereos__header {
+  text-align: center;
+}
+
+.servicios-aereos__title {
+  margin: 0;
+  line-height: 1.1;
+  color: #fff;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* Card blanca con imagen y texto */
+.servicios-aereos__card {
+  background-color: #fff;
+  color: #1a1a1a;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 32px 60px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.servicios-aereos__media {
+  width: 100%;
+  background-color: #000;
+  line-height: 0;
+}
+
+.servicios-aereos__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.servicios-aereos__body {
+  padding: 2rem 1.5rem 2rem 1.5rem;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .servicios-aereos__body {
+    padding: 2rem 2rem 2.5rem 2rem;
+  }
+}
+@media (min-width: 1200px) {
+  .servicios-aereos__body {
+    padding: 2.5rem 3rem 3rem 3rem;
+  }
+}
+
+.servicios-aereos__item-title {
+  margin: 0 0 1rem 0;
+  line-height: 1.2;
+  color: #131414;
+}
+
+.servicios-aereos__desc {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #131414;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (min-width: 768px) {
+  .servicios-aereos__desc {
+    font-size: 1.0625rem;
+  }
+}
+@media (min-width: 1200px) {
+  .servicios-aereos__desc {
+    font-size: 1.125rem;
+  }
+}
+
+/* =========================
+   SECCIÓN: ALCANCE
+   ========================= */
+.alcance {
+  background-color: #759863; /* mismo verde base de la pantalla de referencia */
+  color: #fff;
+  padding: 3rem 5rem 4rem 5rem;
+}
+@media (min-width: 768px) {
+  .alcance {
+    padding: 4rem 5rem 5rem 5rem;
+  }
+}
+@media (min-width: 1200px) {
+  .alcance {
+    padding: 5rem 5rem 6rem 5rem;
+  }
+}
+
+.alcance__inner {
+  max-width: 1360px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+}
+@media (min-width: 768px) {
+  .alcance__inner {
+    row-gap: 3rem;
+  }
+}
+
+/* Título principal "Alcance" */
+.alcance__header {
+  text-align: center;
+}
+
+.alcance__title {
+  margin: 0;
+  line-height: 1.1;
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* Grid de contenido: mapa + lista */
+.alcance__grid {
+  display: grid;
+  align-items: start;
+  justify-content: center;
+  row-gap: 2rem;
+  /* Mobile: una sola columna (mapa arriba, lista abajo) */
+  grid-template-columns: 1fr;
+}
+@media (min-width: 992px) {
+  .alcance__grid {
+    /* Desktop: 2 columnas */
+    grid-template-columns: minmax(300px, 500px) minmax(300px, 480px);
+    -moz-column-gap: 3rem;
+         column-gap: 3rem;
+  }
+}
+@media (min-width: 1200px) {
+  .alcance__grid {
+    -moz-column-gap: 4rem;
+         column-gap: 4rem;
+  }
+}
+@media (min-width: 1400px) {
+  .alcance__grid {
+    -moz-column-gap: 5rem;
+         column-gap: 5rem;
+  }
+}
+
+/* Columna del mapa */
+.alcance__map-col {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.alcance__map {
+  max-width: 400px;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Columna info (lista de provincias) */
+.alcance__info-col {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left;
+  max-width: 480px;
+  margin: 0 auto;
+}
+@media (min-width: 992px) {
+  .alcance__info-col {
+    margin: 0;
+  }
+}
+
+.alcance__subtitle {
+  margin: 0 0 1.5rem 0;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #fff;
+  font-size: clamp(1.25rem, 1rem + 0.4vw, 1.5rem); /* ~20px -> ~24px */
+  text-transform: uppercase;
+  text-align: left;
+}
+
+/* Lista de provincias */
+.alcance__list {
+  list-style: none;
+  margin: 0 0 2rem 0;
+  padding: 0;
+  display: grid;
+  row-gap: 1rem;
+}
+
+.alcance__item {
+  display: flex;
+  align-items: flex-start;
+  -moz-column-gap: 0.75rem;
+       column-gap: 0.75rem;
+  color: #fff;
+  font-size: clamp(1.125rem, 1rem + 0.4vw, 1.5rem); /* ~18px -> ~24px */
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.alcance__icon {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 2px solid #000000;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  line-height: 1.3rem;
+  text-align: center;
+  font-weight: 600;
+  color: #000000;
+  /* efecto leve de sombra como en el prototipo */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), 0 0 0 2px rgba(0, 0, 0, 0.4) inset;
+  /* para alinear el check verticalmente con el texto */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.alcance__provincia {
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Nota de disponibilidad */
+.alcance__nota {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.4;
+  font-weight: 500;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  text-align: left;
+  max-width: 28ch;
+}
+@media (min-width: 768px) {
+  .alcance__nota {
+    font-size: 1rem;
+  }
+}
+
+/* =========================
+   SECCIÓN: TECNOLOGÍA Y BENEFICIOS
+   ========================= */
+.tecnologia {
+  background-color: #304d20; /* verde más oscuro, tono militar/agro tech */
+  color: #fff;
+  padding: 3rem 5rem 4rem 5rem;
+}
+@media (min-width: 768px) {
+  .tecnologia {
+    padding: 4rem 5rem 5rem 5rem;
+  }
+}
+@media (min-width: 1200px) {
+  .tecnologia {
+    padding: 5rem 5rem 6rem 5rem;
+  }
+}
+
+.tecnologia__inner {
+  max-width: 1360px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+}
+@media (min-width: 768px) {
+  .tecnologia__inner {
+    row-gap: 3rem;
+  }
+}
+
+/* Título general */
+.tecnologia__header {
+  text-align: center;
+}
+
+.tecnologia__title {
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.1;
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.7);
+  font-size: clamp(2rem, 1.2rem + 1vw, 3rem); /* ~32px -> ~48px */
+}
+
+/* Contenedor principal (imagen + specs + beneficios) */
+.tecnologia__card {
+  background-color: transparent; /* la card no tiene fondo propio, está todo sobre el verde */
+  display: grid;
+  /* Mobile: apilado */
+  grid-template-columns: 1fr;
+  row-gap: 2rem;
+}
+@media (min-width: 992px) {
+  .tecnologia__card {
+    /* Desktop: imagen a la izquierda, texto a la derecha */
+    grid-template-columns: minmax(320px, 560px) minmax(320px, 1fr);
+    -moz-column-gap: 2rem;
+         column-gap: 2rem;
+    align-items: start;
+  }
+}
+@media (min-width: 1200px) {
+  .tecnologia__card {
+    -moz-column-gap: 3rem;
+         column-gap: 3rem;
+  }
+}
+
+/* ==== Columna izquierda: imagen del drone ==== */
+.tecnologia__media {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.tecnologia__media-frame {
+  background-color: #0d0d0d;
+  border-radius: 1rem;
+  box-shadow: 0 32px 60px rgba(0, 0, 0, 0.7), 0 4px 16px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  width: 100%;
+  max-width: 600px;
+  min-height: 300px;
+}
+@media (min-width: 768px) {
+  .tecnologia__media-frame {
+    min-height: 360px;
+  }
+}
+@media (min-width: 1200px) {
+  .tecnologia__media-frame {
+    min-height: 420px; /* da esa sensación de bloque sólido que se ve en tu captura */
+  }
+}
+
+.tecnologia__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+  background-color: #0d0d0d;
+}
+
+/* ==== Columna derecha: texto técnico + beneficios ==== */
+.tecnologia__info {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  color: #fff;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+@media (min-width: 992px) {
+  .tecnologia__info {
+    margin: 0; /* ya alinea con el grid */
+  }
+}
+
+/* bloque specs */
+.tecnologia__specs {
+  color: #fff;
+}
+
+.tecnologia__label {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.9rem;
+  line-height: 1.3;
+  font-weight: 600;
+  color: #d3d3d3;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: left;
+}
+
+.tecnologia__name {
+  margin: 0 0 1.5rem 0;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #fff;
+  font-size: clamp(1.5rem, 1rem + 0.8vw, 2rem); /* ~24px -> ~32px */
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.8);
+  text-align: left;
+}
+
+.tecnologia__desc {
+  margin: 0;
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.5;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  text-align: left;
+}
+@media (min-width: 768px) {
+  .tecnologia__desc {
+    font-size: 1.0625rem; /* ~17px */
+    line-height: 1.5;
+  }
+}
+@media (min-width: 1200px) {
+  .tecnologia__desc {
+    font-size: 1.125rem; /* ~18px */
+    line-height: 1.5;
+  }
+}
+
+/* ==== Beneficios (icono + texto) ==== */
+.tecnologia__benefits {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 2rem;
+}
+@media (min-width: 768px) {
+  .tecnologia__benefits {
+    grid-template-columns: 1fr 1fr; /* dos columnas en desktop como tu captura */
+    -moz-column-gap: 2rem;
+         column-gap: 2rem;
+    row-gap: 2rem;
+  }
+}
+@media (min-width: 1200px) {
+  .tecnologia__benefits {
+    -moz-column-gap: 3rem;
+         column-gap: 3rem;
+  }
+}
+
+.tecnologia__benefit {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.75rem;
+  color: #fff;
+}
+
+@media (min-width: 768px) {
+  .tecnologia__benefit {
+    flex-direction: row;
+    align-items: flex-start;
+    -moz-column-gap: 1rem;
+         column-gap: 1rem;
+  }
+}
+.tecnologia__benefit-icon {
+  color: #fff;
+  font-size: 2rem;
+  line-height: 1;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  /* para íconos tipo stroke blanco en círculo,
+     cuando metas SVG reales vas a reemplazar esto */
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+  border-radius: 999px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 0 0 2px rgba(0, 0, 0, 0.1) inset;
+}
+
+.tecnologia__benefit-text {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.125rem; /* ~18px base */
+  line-height: 1.4;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+@media (min-width: 768px) {
+  .tecnologia__benefit-text {
+    font-size: 1.25rem; /* ~20px */
+  }
+}
+
+/* =========================
+   SECCIÓN: MUESTRA GRATIS
+   ========================= */
+.cta-muestra {
+  background-color: #759863; /* mismo verde del resto */
+  color: #fff;
+  padding: 3rem 5rem 4rem 5rem;
+}
+@media (min-width: 768px) {
+  .cta-muestra {
+    padding: 4rem 5rem 5rem 5rem;
+  }
+}
+@media (min-width: 1200px) {
+  .cta-muestra {
+    padding: 5rem 5rem 6rem 5rem;
+  }
+}
+
+.cta-muestra__inner {
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+.cta-muestra__header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+@media (min-width: 992px) {
+  .cta-muestra__header {
+    margin-bottom: 2.5rem;
+  }
+}
+
+.cta-muestra__title {
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.1;
+  font-size: clamp(2rem, 1.2rem + 1vw, 3rem); /* 32 → 48 */
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* Grid: texto izq + formulario der */
+.cta-muestra__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+@media (min-width: 992px) {
+  .cta-muestra__grid {
+    grid-template-columns: minmax(320px, 1fr) minmax(420px, 560px);
+    align-items: start;
+    gap: 3rem;
+  }
+}
+
+/* Copy */
+.cta-muestra__copy {
+  max-width: 760px;
+}
+
+.cta-muestra__eyebrow {
+  margin: 0 0 0.75rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 800;
+  color: #e7eadd;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  text-align: left;
+}
+
+.cta-muestra__headline {
+  margin: 0 0 1rem 0;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #fff;
+  font-size: clamp(1.75rem, 1.2rem + 1vw, 2.5rem); /* 28 → 40 */
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.6);
+  text-align: left;
+}
+
+.cta-muestra__desc {
+  margin: 0;
+  font-size: clamp(1rem, 0.95rem + 0.8vw, 3rem);
+  line-height: 1.5;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  text-align: left;
+}
+
+/* Formulario */
+.cta-muestra__form {
+  background: transparent; /* en el prototipo los campos flotan sobre el verde */
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.form-field {
+  display: block;
+}
+
+.cta-muestra__form input,
+.cta-muestra__form textarea {
+  width: 100%;
+  border: 0;
+  border-radius: 0.6rem;
+  background: #fff;
+  color: #1a1a1a;
+  font-size: 1rem;
+  line-height: 1.4;
+  padding: 0.95rem 1.1rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+.cta-muestra__form textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+/* estados de foco accesibles */
+.cta-muestra__form input:focus,
+.cta-muestra__form textarea:focus {
+  outline: 3px solid #ffcc66;
+  outline-offset: 2px;
+}
+
+/* botón */
+.cta-muestra__submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 54px;
+  border: 0;
+  border-radius: 0.6rem;
+  font-weight: 700;
+  font-size: 1.0625rem;
+  color: #1a1a1a;
+  background-color: #f4a41f; /* naranja CTA */
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  transition: filter 0.18s ease, transform 0.06s ease;
+}
+
+.cta-muestra__submit:hover {
+  filter: brightness(1.06);
+}
+
+.cta-muestra__submit:active {
+  transform: translateY(1px);
+}
+
+/* utilidades */
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 1px, 1px);
+  white-space: nowrap;
+  border: 0;
+}

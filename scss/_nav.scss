@@ -1,0 +1,99 @@
+/* NAV PRINCIPAL (fijo tipo sticky arriba) */
+nav.arados {
+  position: sticky; /* ← antes era fixed */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1030; /* por encima del sub-nav */
+  padding: 0 !important;
+  background: $nav-color !important; /* negro */
+  color: $light-text-color;
+  border-bottom: 1px solid lighten($nav-color, 5%);
+
+  .nav-link {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+  }
+
+  /* Estilo del dropdown */
+  .dropdown-menu {
+    background: #111; // fondo oscuro
+    border: 1px solid #333; // borde gris
+    border-radius: 8px;
+    padding: 0.5rem 0;
+    min-width: 220px;
+    margin-top: 0rem; // separación del nav
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+    z-index: 2000; // sobre el sub-nav
+  }
+
+  .dropdown-item {
+    color: #fff;
+    font-weight: 500;
+    padding: 0.6rem 1.2rem;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+  }
+
+  .dropdown-item:hover {
+    background: #222;
+    color: $accent-color; // o #7f3eff si querés violeta
+    transform: translateX(4px); // efecto estético opcional
+  }
+
+  .dropdown-divider {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin: 0.25rem 0;
+  }
+}
+
+/* Detalles del nav */
+.logotipo {
+  height: 80px;
+}
+
+.navbar-toggler {
+  border-color: #d0d0d0 !important;
+  .navbar-toggler-icon {
+    background: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.7)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E")
+      center center no-repeat;
+  }
+}
+
+/* Links del nav */
+.cosechadora a {
+  color: $light-text-color;
+  &:hover {
+    color: $accent-color;
+  } /* o tu violeta si ya lo definiste */
+}
+/* Variante mobile: logo y botón hamburguesa centrados */
+@media (max-width: $breakpoint-md) {
+  nav.arados {
+    .container {
+      display: flex;
+      flex-direction: column; /* uno debajo del otro */
+      align-items: center; /* centrados horizontalmente */
+      justify-content: center;
+      padding: 0.5rem 0;
+    }
+
+    .navbar-brand {
+      margin: 0 auto 0.3rem auto; /* logo centrado con espacio abajo */
+      display: block;
+    }
+
+    .navbar-toggler {
+      margin: 0 auto; /* centrado debajo del logo */
+    }
+
+    /* Si el menú se despliega en mobile, que aparezca bien debajo */
+    .navbar-collapse {
+      background: $nav-color; /* fondo negro */
+      width: 100%;
+      text-align: center;
+      padding: 0.75rem 1rem;
+    }
+  }
+}
+
