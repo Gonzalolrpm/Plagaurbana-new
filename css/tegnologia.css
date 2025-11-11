@@ -1,0 +1,232 @@
+@charset "UTF-8";
+/* =========================
+   SECCIÓN: TECNOLOGÍA Y BENEFICIOS
+   ========================= */
+.tecnologia {
+  background-color: #304d20; /* verde más oscuro, tono militar/agro tech */
+  color: #fff;
+  padding: 3rem 5rem 4rem 5rem;
+}
+@media (min-width: 768px) {
+  .tecnologia {
+    padding: 4rem 5rem 5rem 5rem;
+  }
+}
+@media (min-width: 1200px) {
+  .tecnologia {
+    padding: 5rem 5rem 6rem 5rem;
+  }
+}
+
+.tecnologia__inner {
+  max-width: 1360px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+}
+@media (min-width: 768px) {
+  .tecnologia__inner {
+    row-gap: 3rem;
+  }
+}
+
+/* Título general */
+.tecnologia__header {
+  text-align: center;
+}
+
+.tecnologia__title {
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.1;
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.7);
+  font-size: clamp(2rem, 1.2rem + 1vw, 3rem); /* ~32px -> ~48px */
+}
+
+/* Contenedor principal (imagen + specs + beneficios) */
+.tecnologia__card {
+  background-color: transparent; /* la card no tiene fondo propio, está todo sobre el verde */
+  display: grid;
+  /* Mobile: apilado */
+  grid-template-columns: 1fr;
+  row-gap: 2rem;
+}
+@media (min-width: 992px) {
+  .tecnologia__card {
+    /* Desktop: imagen a la izquierda, texto a la derecha */
+    grid-template-columns: minmax(320px, 560px) minmax(320px, 1fr);
+    -moz-column-gap: 2rem;
+         column-gap: 2rem;
+    align-items: start;
+  }
+}
+@media (min-width: 1200px) {
+  .tecnologia__card {
+    -moz-column-gap: 3rem;
+         column-gap: 3rem;
+  }
+}
+
+/* ==== Columna izquierda: imagen del drone ==== */
+.tecnologia__media {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.tecnologia__media-frame {
+  background-color: #0d0d0d;
+  border-radius: 1rem;
+  box-shadow: 0 32px 60px rgba(0, 0, 0, 0.7), 0 4px 16px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  width: 100%;
+  max-width: 600px;
+  min-height: 300px;
+}
+@media (min-width: 768px) {
+  .tecnologia__media-frame {
+    min-height: 360px;
+  }
+}
+@media (min-width: 1200px) {
+  .tecnologia__media-frame {
+    min-height: 420px; /* da esa sensación de bloque sólido que se ve en tu captura */
+  }
+}
+
+.tecnologia__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+  background-color: #0d0d0d;
+}
+
+/* ==== Columna derecha: texto técnico + beneficios ==== */
+.tecnologia__info {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  color: #fff;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+@media (min-width: 992px) {
+  .tecnologia__info {
+    margin: 0; /* ya alinea con el grid */
+  }
+}
+
+/* bloque specs */
+.tecnologia__specs {
+  color: #fff;
+}
+
+.tecnologia__label {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.9rem;
+  line-height: 1.3;
+  font-weight: 600;
+  color: #d3d3d3;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: left;
+}
+
+.tecnologia__name {
+  margin: 0 0 1.5rem 0;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #fff;
+  font-size: clamp(1.5rem, 1rem + 0.8vw, 2rem); /* ~24px -> ~32px */
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.8);
+  text-align: left;
+}
+
+.tecnologia__desc {
+  margin: 0;
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.5;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  text-align: left;
+}
+@media (min-width: 768px) {
+  .tecnologia__desc {
+    font-size: 1.0625rem; /* ~17px */
+    line-height: 1.5;
+  }
+}
+@media (min-width: 1200px) {
+  .tecnologia__desc {
+    font-size: 1.125rem; /* ~18px */
+    line-height: 1.5;
+  }
+}
+
+/* ==== Beneficios (icono + texto) ==== */
+.tecnologia__benefits {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 2rem;
+}
+@media (min-width: 768px) {
+  .tecnologia__benefits {
+    grid-template-columns: 1fr 1fr; /* dos columnas en desktop como tu captura */
+    -moz-column-gap: 2rem;
+         column-gap: 2rem;
+    row-gap: 2rem;
+  }
+}
+@media (min-width: 1200px) {
+  .tecnologia__benefits {
+    -moz-column-gap: 3rem;
+         column-gap: 3rem;
+  }
+}
+
+.tecnologia__benefit {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.75rem;
+  color: #fff;
+}
+
+@media (min-width: 768px) {
+  .tecnologia__benefit {
+    flex-direction: row;
+    align-items: flex-start;
+    -moz-column-gap: 1rem;
+         column-gap: 1rem;
+  }
+}
+.tecnologia__benefit-icon {
+  color: #fff;
+  font-size: 2rem;
+  line-height: 1;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0);
+  /* para íconos tipo stroke blanco en círculo,
+     cuando metas SVG reales vas a reemplazar esto */
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tecnologia__benefit-text {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.125rem; /* ~18px base */
+  line-height: 1.4;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+@media (min-width: 768px) {
+  .tecnologia__benefit-text {
+    font-size: 1.25rem; /* ~20px */
+  }
+}

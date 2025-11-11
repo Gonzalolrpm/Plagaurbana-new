@@ -1,0 +1,151 @@
+/* =========================
+   SECCIÓN: MUESTRA GRATIS
+   ========================= */
+
+.cta-muestra {
+  background-color: #759863; /* mismo verde del resto */
+  color: #fff;
+  padding: 3rem 5rem 4rem 5rem;
+
+  @media (min-width: 768px) {
+    padding: 4rem 5rem 5rem 5rem;
+  }
+  @media (min-width: 1200px) {
+    padding: 5rem 5rem 6rem 5rem;
+  }
+}
+
+.cta-muestra__inner {
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+.cta-muestra__header {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  @media (min-width: 992px) {
+    margin-bottom: 2.5rem;
+  }
+}
+
+.cta-muestra__title {
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.1;
+  font-size: clamp(2rem, 1.2rem + 1vw, 3rem); /* 32 → 48 */
+  text-shadow: 0 3px 8px rgba(0,0,0,.6);
+}
+
+/* Grid: texto izq + formulario der */
+.cta-muestra__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+
+  @media (min-width: 992px) {
+    grid-template-columns: minmax(320px, 1fr) minmax(420px, 560px);
+    align-items: start;
+    gap: 3rem;
+  }
+}
+
+/* Copy */
+.cta-muestra__copy {
+  max-width: 760px;
+}
+
+.cta-muestra__eyebrow {
+  margin: 0 0 .75rem 0;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  font-weight: 800;
+  color: #e7eadd;
+  text-shadow: 0 2px 4px rgba(0,0,0,.4);
+  text-align: left;
+}
+
+.cta-muestra__headline {
+  margin: 0 0 1rem 0;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #fff;
+  font-size: clamp(1.75rem, 1.2rem + 1vw, 2.5rem); /* 28 → 40 */
+  text-shadow: 0 3px 8px rgba(0,0,0,.6);
+  text-align: left;
+}
+
+.cta-muestra__desc {
+  margin: 0;
+  font-size: clamp(1rem, .95rem + .80vw, 3rem);
+  line-height: 1.5;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0,0,0,.5);
+  text-align: left;
+}
+
+/* Formulario */
+.cta-muestra__form {
+  background: transparent; /* en el prototipo los campos flotan sobre el verde */
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.form-field {
+  display: block;
+}
+
+.cta-muestra__form input,
+.cta-muestra__form textarea {
+  width: 100%;
+  border: 0;
+  border-radius: .6rem;
+  background: #fff;
+  color: #1a1a1a;
+  font-size: 1rem;
+  line-height: 1.4;
+  padding: .95rem 1.1rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,.25);
+}
+
+.cta-muestra__form textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+/* estados de foco accesibles */
+.cta-muestra__form input:focus,
+.cta-muestra__form textarea:focus {
+  outline: 3px solid #ffcc66;
+  outline-offset: 2px;
+}
+
+/* botón */
+.cta-muestra__submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 54px;
+  border: 0;
+  border-radius: .6rem;
+  font-weight: 700;
+  font-size: 1.0625rem;
+  color: #1a1a1a;
+  background-color: #f4a41f; /* naranja CTA */
+  box-shadow: 0 18px 36px rgba(0,0,0,.35);
+  cursor: pointer;
+  transition: filter .18s ease, transform .06s ease;
+}
+
+.cta-muestra__submit:hover { filter: brightness(1.06); }
+.cta-muestra__submit:active { transform: translateY(1px); }
+
+/* utilidades */
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0, 0, 1px, 1px); white-space: nowrap; border: 0;
+}

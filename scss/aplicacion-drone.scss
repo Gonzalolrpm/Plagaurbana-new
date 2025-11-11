@@ -1,0 +1,37 @@
+// IMPORTAMOS LAS VARIABLES DESDE EL ARCHIVO SEPARADO
+@import "variables";
+
+// --- IMPORTAMOS ESTILOS GLOBALES Y RESET BÁSICO ---
+@import "global";
+
+// --- IMPORTAMOS SUB NAV REUTILIZABLE ---
+@import "drone-topbar";
+
+// ---- IMPORTAMOS HERO REUTILIZABLE EN PAGES ---
+
+@import "hero-drone";
+
+// --- IMPORTAMOS SECCION DE TEGNOLOGIA REUTILIZABLE --
+
+@import "tegnologia";
+
+// --- IMPORTAMOS SECCION DE MUESTRA GRATIS REUTILIZABLE --
+
+@import "cta-muestra";
+
+// -- OVERRIDES DE LA LANDING ---
+
+/* scoped de fondos*/
+
+.page--aplicacion-drone {
+  .hero-drone__bg {
+    background-image: url("../img/hero-aplicacion-drone.png");
+  }
+  .drone-topbar,
+  .cta-muestra {
+    background-color: #151f2c;
+  }
+  .tecnologia {
+    background-color: #11315b;
+  }
+}

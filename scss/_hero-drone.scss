@@ -1,0 +1,225 @@
+/* =========================
+   HERO DRONE LANDING
+   ========================= */
+
+.hero-drone {
+  position: relative;
+  width: 100%;
+  min-height: clamp(480px, 70vh, 640px); /* altura flexible ~60vh en desktop */
+  color: #fff;
+  background-color: #000; // fallback si no carga imagen
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: stretch;
+}
+
+/* capa de imagen de fondo */
+.hero-drone__bg {
+  position: absolute;
+  inset: 0;
+  background-image: url("../img/T50.jpg");
+  background-repeat: no-repeat;
+  background-position: center 50%;
+  background-size: 100%; /* imagen levemente “alejada” */
+  z-index: 0;
+  transition: background-size 0.4s ease;
+}
+
+/* overlay con degradé oscuro hacia abajo */
+.hero-drone__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.3) 40%,
+    rgba(0, 0, 0, 0.5) 70%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+  z-index: 1;
+}
+
+/* wrapper interno */
+.hero-drone__inner {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+
+  width: 100%;
+  min-height: inherit;
+
+  /* margen/gutter lateral consistente con el resto de la página 
+  padding-left: 1rem;
+  padding-right: 1rem;*/
+
+  /* mantener el texto abajo de todo */
+  padding-top: 3rem;
+  padding-bottom: 3rem; /* cerca del pasto */
+}
+
+/* bloque de texto */
+.hero-drone__content {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  text-align: left;
+  max-width: inherit;
+}
+
+/* eyebrow / categoría */
+.hero-drone__eyebrow {
+  margin: 0;
+  font-size: 0.875rem; /* ~14px */
+  font-weight: 600;
+  line-height: 1.4;
+  color: #fff;
+  opacity: 0.9;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* título principal */
+.hero-drone__title {
+  margin: 0;
+  color: #fff;
+  font-weight: 700;
+  line-height: 1.15;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+
+  /* El Figma muestra un H1 muy grande pero no todo mayúscula histérica.
+     Dejamos tamaño fluido similar a lo que estás viendo:
+     desktop ~48px, mobile ~32px */
+  font-size: clamp(2rem, 1rem + 2vw, 3rem);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+/* descripción */
+.hero-drone__desc {
+  margin: 0;
+  font-weight: 400;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+  font-size: 1rem;
+  line-height: 1.5;
+
+  @media (min-width: 768px) {
+    font-size: 1.0625rem; /* ~17px */
+    line-height: 1.5;
+  }
+}
+
+/* CTA amarillo */
+.hero-drone__cta {
+  align-self: flex-start;
+
+  background-color: #f4a41f;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.2;
+
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+
+  padding: 0.9rem 1.5rem;
+  min-height: 48px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+
+  transition: all 0.25s ease;
+
+  &:hover {
+    background-color: lighten(#f4a41f, 5%);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.65);
+    transform: translateY(-2px);
+    text-decoration: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 1rem;
+    padding: 1rem 1.75rem;
+    min-height: 50px;
+  }
+}
+
+/* =====================================================
+   HERO DRONE — Mobile overrides (NO cambia desktop)
+   Colocar este bloque al final del archivo
+   ===================================================== */
+@media (max-width: 767.98px) {
+  .hero-drone {
+    min-height: clamp(520px, 70vh, 680px); /* un poco más alta en mobile */
+  }
+
+  /* La imagen SIEMPRE cubre (sin bordes negros) y muestra más dron */
+  .hero-drone__bg {
+    background-size: cover;        /* <- clave para evitar bordes */
+    background-position: center 38%;
+  }
+
+  /* Overlay más marcado para mejorar legibilidad del texto */
+  .hero-drone__overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.25) 0%,
+      rgba(0, 0, 0, 0.45) 55%,
+      rgba(0, 0, 0, 0.65) 100%
+    );
+  }
+
+  /* Gutters y colocación del bloque de texto */
+  .hero-drone__inner {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem; /* texto más abajo */
+  }
+
+  .hero-drone__content {
+    row-gap: .85rem;
+    max-width: 34rem; /* ~544px, lectura cómoda */
+  }
+
+  /* El título ENVUELVE en mobile (sin romper desktop) */
+  .hero-drone__title {
+    white-space: normal;           /* <- importante */
+    word-break: normal;
+    letter-spacing: -0.02em;
+    font-size: clamp(1.75rem, 1.1rem + 4vw, 2.5rem); /* ~28–40px */
+  }
+
+  /* Párrafo más legible en móviles */
+  .hero-drone__desc {
+    max-width: 40ch;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  /* CTA full-width en mobile para mejor tap target */
+  .hero-drone__cta {
+    align-self: stretch;
+    padding: 0.9rem 1.25rem;
+    min-height: 48px;
+  }
+}
+
+/* Respeto a usuarios con “reducir movimiento” (opcional) */
+@media (prefers-reduced-motion: reduce) {
+  .hero-drone__bg { transition: none !important; }
+  .hero-drone__cta { transition: none !important; }
+}
